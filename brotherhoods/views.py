@@ -8,6 +8,8 @@ from rest_framework.reverse import reverse
 # Create your views here.
 from .models import Brotherhood
 from .serializers import BrotherhoodSerializer
+from django.views.decorators.csrf import csrf_exempt
+
 
 @api_view(['GET'])
 def api_root(request, format=None):
@@ -24,6 +26,7 @@ class BrotherhoodList(generics.ListAPIView):
 
 
 class BrotherhoodCreate(generics.CreateAPIView):
+    authentication_classes = ()
     queryset = Brotherhood.objects.all()
     serializer_class = BrotherhoodSerializer
 
