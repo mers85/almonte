@@ -35,3 +35,17 @@ class BrotherhoodDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Brotherhood.objects.all()
     serializer_class = BrotherhoodSerializer
     permission_classes = (IsAdminUser,)
+
+class BrotherhoodSort(generics.UpdateAPIView):
+    permission_classes = (IsAdminUser,)
+
+    def update(self, request, format=None):
+        """
+        Reorder Brotherhood
+        """
+        for element in request.data:
+            print(element)
+            b = Brotherhood.objects.get(pk=element['id'])
+            b.jump_order = element['order']
+            b.save()
+        return Response(request.data)

@@ -10,6 +10,7 @@ urlpatterns = [
     path('brotherhoods/', views.BrotherhoodList.as_view(), name='brotherhood-list'),
     path('brotherhood/', views.BrotherhoodCreate.as_view(), name='brotherhood-create'),
     path('brotherhoods/<int:pk>/', views.BrotherhoodDetail.as_view(), name='brotherhood-detail'),
+    path('sort/', views.BrotherhoodSort.as_view(), name='sort'),
     path('', views.api_root),
 ]
 

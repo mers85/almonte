@@ -15,9 +15,10 @@ class Brotherhood(models.Model):
         """
         automatically populate jump order
         """
-        next_jump_order = Brotherhood.objects.all().count() + 1
-
-        self.jump_order = next_jump_order
+        if self.jump_order is None:
+            next_jump_order = Brotherhood.objects.all().count() + 1
+            self.jump_order = next_jump_order
+            
         super(Brotherhood, self).save(*args, **kwargs)
 
     def __str__(self):
